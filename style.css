@@ -1,0 +1,446 @@
+/* body, p {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    height: 15px;
+    width: 300px;
+    border: 1px solid black;
+}
+
+.hidden {
+    display: none;
+}
+
+header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgb(36, 36, 36);
+    height: 100px;
+    color: white;
+    font-size: 24px;
+}
+
+.main-get-button {
+    width: 150px;
+    height: 35px;
+}
+ */
+
+/* style.css - iOS Glassmorphism (Вертикальный центрированный макет) */
+:root {
+    /* Светлая тема (холодные оттенки) */
+    --bg-light: rgba(235, 240, 245, 0.92);
+    --glass-light: rgba(255, 255, 255, 0.78);
+    --text-light: #1c1c1e;
+    --text-secondary-light: #5a5a5e;
+    --accent-light: #007aff;
+    --border-light: rgba(60, 60, 67, 0.12);
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --button-bg-light: rgba(255, 255, 255, 0.9);
+    
+    /* Тёмная тема (холодные оттенки) */
+    --bg-dark: rgba(28, 28, 35, 0.92);
+    --glass-dark: rgba(44, 44, 50, 0.8);
+    --text-dark: #f5f5f7;
+    --text-secondary-dark: #8e8e93;
+    --accent-dark: #0a84ff;
+    --border-dark: rgba(84, 84, 88, 0.25);
+    --shadow-dark: rgba(0, 0, 0, 0.25);
+    --button-bg-dark: rgba(55, 55, 60, 0.9);
+    
+    /* По умолчанию светлая */
+    --bg: var(--bg-light);
+    --glass: var(--glass-light);
+    --text: var(--text-light);
+    --text-secondary: var(--text-secondary-light);
+    --accent: var(--accent-light);
+    --border: var(--border-light);
+    --shadow: var(--shadow-light);
+    --button-bg: var(--button-bg-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: var(--bg-dark);
+        --glass: var(--glass-dark);
+        --text: var(--text-dark);
+        --text-secondary: var(--text-secondary-dark);
+        --accent: var(--accent-dark);
+        --border: var(--border-dark);
+        --shadow: var(--shadow-dark);
+        --button-bg: var(--button-bg-dark);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background: radial-gradient(ellipse at top, #2c4c6e, #1a2a3a);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+}
+
+/* Основной контейнер-карточка */
+body > *:not(script) {
+    max-width: 100%;
+    width: 100%;
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    background: var(--bg);
+    border-radius: 44px;
+    box-shadow: 0 12px 40px var(--shadow);
+    border: 0.5px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+/* Header — элементы по краям */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 20px 24px 12px 24px;
+    border-bottom: 0.5px solid var(--border);
+    width: 100%;
+}
+
+.header-date-p, .header-bar-p {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.header-bar-p {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* Main — увеличенный отступ сверху для центрирования */
+main {
+    padding: 28px 24px 32px 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;  /* Отступ между header и main */
+    margin-bottom: 8px;
+}
+
+/* Кнопка Get Today's Lesson */
+.main-get-box {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 12px 0;
+    width: 100%;
+}
+
+.main-get-button {
+    background: var(--accent);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 40px;
+    width: 100%;
+    max-width: 280px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 14px rgba(0, 122, 255, 0.3);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.main-get-button:active {
+    transform: scale(0.97);
+    opacity: 0.85;
+}
+
+/* Блок с уроком (стеклянная карточка) */
+.m-box {
+    background: var(--glass);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 36px;
+    padding: 24px;
+    margin-top: 20px;
+    border: 0.5px solid var(--border);
+    box-shadow: 0 8px 24px var(--shadow);
+    animation: fadeInUp 0.35s ease;
+    width: 100%;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* День и тип — на одной строке, по краям */
+.m-day {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border);
+    width: 100%;
+}
+
+.m-day-day-p {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+}
+
+.m-day-type-p {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+/* Топик — по центру, крупный шрифт */
+.m-topic {
+    margin: 12px 0 24px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.m-topic-p {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.4px;
+    line-height: 1.35;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Время — каждый с новой строки, слева, с отступом и префиксами */
+.m-time {
+    margin: 16px 0 28px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+/* Стили для строк video/grammar/words */
+.m-time-video-p, .m-time-grammar-p, .m-time-words-p {
+    font-size: 16px;
+    font-weight: 470;
+    color: var(--text-secondary);
+    margin-left: 12px;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    letter-spacing: -0.2px;
+    line-height: 1.4;
+}
+
+/* Добавляем жирный префикс внутри параграфов (video:, grammar:, words:) */
+.m-time-video-p::before {
+    content: 'video: ';
+    font-weight: 620;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.m-time-grammar-p::before {
+    content: 'grammar: ';
+    font-weight: 620;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.m-time-words-p::before {
+    content: 'words: ';
+    font-weight: 620;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+/* Две кнопки в ряд внизу */
+.m-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.m-buttons-cancel-btn, .m-buttons-complete-btn {
+    flex: 1;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 17px;
+    font-weight: 590;
+    border-radius: 34px;
+    border: none;
+    backdrop-filter: blur(20px);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.m-buttons-cancel-btn {
+    background: var(--button-bg);
+    color: var(--text-secondary);
+    border: 0.5px solid var(--border);
+}
+
+.m-buttons-complete-btn {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+.m-buttons-cancel-btn:active {
+    background: var(--border);
+    transform: scale(0.97);
+}
+
+.m-buttons-complete-btn:active {
+    transform: scale(0.97);
+    opacity: 0.85;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Адаптивность под iPhone и малые экраны */
+@media (max-width: 480px) {
+    body {
+        padding: 12px 12px;
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+    
+    body > *:not(script) {
+        border-radius: 36px;
+    }
+    
+    header {
+        padding: 18px 20px 10px 20px;
+    }
+    
+    .header-date-p, .header-bar-p {
+        font-size: 15px;
+    }
+    
+    main {
+        padding: 20px 20px 26px 20px;
+        margin-top: 16px;
+    }
+    
+    .main-get-button {
+        padding: 12px 20px;
+        font-size: 16px;
+        max-width: 260px;
+    }
+    
+    .m-box {
+        padding: 20px;
+        border-radius: 32px;
+        margin-top: 16px;
+    }
+    
+    .m-topic-p {
+        font-size: 24px;
+    }
+    
+    .m-time-video-p, .m-time-grammar-p, .m-time-words-p {
+        font-size: 15px;
+        margin-left: 8px;
+        padding-left: 12px;
+    }
+    
+    .m-time-video-p::before,
+    .m-time-grammar-p::before,
+    .m-time-words-p::before {
+        font-size: 12px;
+    }
+    
+    .m-buttons-cancel-btn, .m-buttons-complete-btn {
+        padding: 12px 0;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    .m-buttons {
+        gap: 10px;
+    }
+    
+    .m-buttons-cancel-btn, .m-buttons-complete-btn {
+        white-space: normal;
+        font-size: 14px;
+        padding: 10px 0;
+    }
+    
+    .m-topic-p {
+        font-size: 22px;
+    }
+}
+
+/* Поддержка Safe Area для iPhone 15 */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Эффект нажатия на кнопки */
+.main-get-button, .m-buttons-cancel-btn, .m-buttons-complete-btn {
+    transition: transform 0.12s, opacity 0.2s;
+}
+
+/* Дополнительный стеклянный блеск */
+.m-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    border-radius: 36px 36px 0 0;
+    pointer-events: none;
+}
+
+.m-box {
+    position: relative;
+    overflow: hidden;
+}
