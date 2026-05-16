@@ -673,6 +673,7 @@ const getBtn = document.querySelector('.main-get-button')
 const mbox = document.querySelector('.m-box')
 const completeBtn = document.querySelector('.m-buttons-complete-btn')
 const cancelBtn = document.querySelector('.m-buttons-cancel-btn')
+const wordsBtn = document.querySelector('.m-time-get-btn')
 
 const dayP = document.querySelector('.m-day-day-p')
 const typeP = document.querySelector('.m-day-type-p')
@@ -715,6 +716,25 @@ getBtn.addEventListener('click', ()=>{
     wordsP.textContent = topics[lessonNum-1].wordsCount
 })
 
+wordsBtn.addEventListener('click',()=>{
+    navigator.clipboard.writeText(words[lessonNum])
+        .then(()=>{
+            wordsBtn.classList.remove('m-time-get-btn')
+            wordsBtn.classList.add('m-time-get-btn-active')
+
+            setTimeout(() => {
+                wordsBtn.classList.remove('m-time-get-btn-active')
+                wordsBtn.classList.add('m-time-get-btn')
+
+            },1000)
+        })
+})
+
+cancelBtn.addEventListener('click',()=>{
+    getBtn.classList.remove('hidden')
+    mbox.classList.add('hidden')
+})
+
 completeBtn.addEventListener('click',()=>{
     getBtn.classList.remove('hidden')
     mbox.classList.add('hidden')
@@ -722,9 +742,4 @@ completeBtn.addEventListener('click',()=>{
     lessonNum++
     localStorage.setItem('lesson',lessonNum)
     barP.textContent = `${lessonNum}/60`
-})
-
-cancelBtn.addEventListener('click',()=>{
-    getBtn.classList.remove('hidden')
-    mbox.classList.add('hidden')
 })
